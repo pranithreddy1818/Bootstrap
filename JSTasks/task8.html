@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task - 11</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color:rgba(255, 119, 0, 0.542);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: orange;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            padding: 20px;
+        }
+
+        .container h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 36px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .checkbox-label {
+            display: inline-block;
+            margin-left: 5px;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+
+        .submit-button {
+            background-color: #3897f0;
+            color: #fff;
+            cursor: pointer;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .submit-button:hover {
+            background-color: #357abf;
+        }
+
+        .declare {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .declare a {
+            text-decoration: none;
+            color: #003569;
+        }
+
+        .declare a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Registration Form</h1>
+        <form id="registrationForm">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="Full Name" required>
+            
+            <label for="lastname">Last Name:</label>
+            <input type="text" id="lastname" name="Last Name" required>
+            
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="Email" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="Password" required>
+            
+            <label for="re-enter">Re-enter Password:</label>
+            <input type="password" id="re-enter" name="Re-enter Password" required>
+            
+            <label>Gender:</label>
+            <input type="radio" name="gender" id="male" value="male">
+            <label for="male" class="checkbox-label">Male</label>
+            <input type="radio" name="gender" id="female" value="female">
+            <label for="female" class="checkbox-label">Female</label>
+            
+            <label for="age">Age:</label>
+            <input type="text" id="age" name="Age" required>
+            
+            <label for="ph_no">Phone Number:</label>
+            <input type="text" id="ph_no" name="Phone Number" required>
+            
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="Address" required>
+            
+            <label for="state">State:</label>
+            <input type="text" id="state" name="State" required>
+            
+            <label for="country">Country:</label>
+            <select name="country" id="country">
+                <option value="India">India</option>
+                <option value="China">China</option>
+                <option value="Europe">Europe</option>
+                <option value="Sri Lanka">Sri Lanka</option>
+                <option value="UK">UK</option>
+            </select>
+            
+            <label for="lang">Languages Known:</label>
+            <input type="checkbox" name="lang" id="english" value="eng">
+            <label for="english" class="checkbox-label">English</label>
+            <input type="checkbox" name="lang" id="kannada" value="kan">
+            <label for="kannada" class="checkbox-label">Kannada</label>
+            <input type="checkbox" name="lang" id="hindi" value="hin">
+            <label for="hindi" class="checkbox-label">Hindi</label>
+            <input type="checkbox" name="lang" id="telugu" value="tel">
+            <label for="telugu" class="checkbox-label">Telugu</label>
+            
+            <input type="checkbox" name="declaration" id="declaration" required>
+            <label for="declaration" class="checkbox-label declare">
+                "Hereby I declare all the given details are true"
+            </label>
+            
+            <p class="declare" align="right">
+                Log in to
+                <a href="https://ethnus.com">Ethnus</a>
+                Website
+            </p>
+            
+            <button type="submit" class="submit-button">Register</button>
+        </form>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("registerBtn").addEventListener("click", function () {
+                if (validateForm()) {
+                    alert("Form is valid. Submitting...");
+                }
+            });
+            function validateForm() {
+                var fullName = document.querySelector("input[name='Full Name']");
+                var lastName = document.querySelector("input[name='Last Name']");
+                var email = document.querySelector("input[name='Email']");
+                var password = document.querySelector("input[name='Password']");
+                var reenterPassword = document.querySelector("input[name='Re-enter Password']");
+                var age = document.querySelector("input[name='Age']");
+                var phoneNumber = document.querySelector("input[name='Phone Number']");
+                var address = document.querySelector("input[name='Address']");
+                var state = document.querySelector("input[name='State']");
+                clearErrors();
+                var isValid = true;
+                if (fullName.value === "") {
+                    setError(fullName, "Full Name is required.");
+                    isValid = false;
+                }
+                if (lastName.value === "") {
+                    setError(lastName, "Last Name is required.");
+                    isValid = false;
+                }
+                if (email.value === "") {
+                    setError(email, "Email is required.");
+                    isValid = false;
+                }
+                if (password.value !== reenterPassword.value) {
+                    setError(password, "Passwords do not match.");
+                    setError(reenterPassword, "Passwords do not match.");
+                    isValid = false;
+                }
+                return isValid;
+            }
+
+            function setError(element, message) {
+                var errorElement = document.createElement("span");
+                errorElement.className = "error";
+                errorElement.textContent = message;
+                element.parentNode.appendChild(errorElement);
+            }
+
+            function clearErrors() {
+                var errorMessages = document.querySelectorAll(".error");
+                errorMessages.forEach(function (error) {
+                    error.parentNode.removeChild(error);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

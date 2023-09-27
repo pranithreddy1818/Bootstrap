@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Date and Time Display</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #date {
+            text-align: center;
+        }
+        #time {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    
+    
+    <button id="showDate">Show Date</button>
+    <p id="date"></p>
+    <button id="showTime">Show Time</button>
+    <p id="time"></p>
+
+    <script>
+        const dateDisplay = document.getElementById("date");
+        const timeDisplay = document.getElementById("time");
+        const showDateButton = document.getElementById("showDate");
+        const showTimeButton = document.getElementById("showTime");
+
+        function updateDateTime() {
+            const currentDateTime = new Date();
+
+            showDateButton.addEventListener("click", function () {
+                const currentDate = currentDateTime.toLocaleDateString();
+                dateDisplay.textContent = `Date: ${currentDate}`;
+            });
+
+            showTimeButton.addEventListener("click", function () {
+                const currentTime = currentDateTime.toLocaleTimeString();
+                timeDisplay.textContent = `Time: ${currentTime}`;
+            });
+        }
+
+        updateDateTime();
+    </script>
+</body>
+</html>
